@@ -18,7 +18,8 @@ curl_close($cardscurl);
 
 //echo $Key;
 
-echo $cards[0]["name"];
+echo $cards;
+echo $cards[0];
 
 
 //http://obscure-harbor-96531.herokuapp.com/setRank/2518831/$userid/$rank
