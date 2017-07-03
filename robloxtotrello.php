@@ -44,7 +44,7 @@ foreach ($Cards as $Card) {
 		$usercurl = curl_init("http://www.roblox.com/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid={$UserID}&groupId=2518831");
 		curl_setopt($usercurl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($usercurl, CURLOPT_HEADER, 0);
-		$UserRank = curl_exec($usercurl);
+		$UserRank = substr(curl_exec($usercurl), 22, -8);
 		$WithUserRank = (int)($UserRank);
 		
 		echo "<br>Without: {$UserRank}<br>With: {$WithUserRank}<br>";
