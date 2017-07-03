@@ -17,29 +17,21 @@ $Cards = json_decode(curl_exec($cardscurl), true);
 curl_close($cardscurl);
 
 function Fail($TheCard, $Comment) {
-	echo "<br>Fail<br>";
-	echo (int)($TheCard["badges"]["comments"]);
-	echo "<br>" . $TheCard["badges"]["comments"] . "<br>";
 	if ((int)($TheCard["badges"]["comments"]) == 0) {
-		echo "Failing<br>";
 		$CardID = $TheCard["id"];
-		echo "{$CardID}<br>";
 		
 		$commentdata = json_encode(array("text" => $Comment, "key" => $_GET["Key"], "token" => $_GET["Token"]));
 		
-		echo "{$commentdata}<br>";
-		
 		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments");
-			curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
-			curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($commentcurl, CURLOPT_HTTPHEADER, array(
-				'Content-Type: application/json',
-				'Content-Length: ' . strlen($commentdata))
+		curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
+		curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($commentcurl, CURLOPT_HTTPHEADER, array(
+			'Content-Type: application/json',
+			'Content-Length: ' . strlen($commentdata))
 		);
 		
 		$commentresult = curl_exec($commentcurl);
-		echo "Comment Result: {$commentresult}<br>";
 	}
 }
 
@@ -88,6 +80,20 @@ foreach ($Cards as $Card) {
 			);
 			
 			$result = curl_exec($rankcurl);
+			
+			$movedata = json_encode(array("value" => "5956aa471322be9f9f27857f", "key" => $_GET["Key"], "token" => $_GET["Token"]));
+			
+			$movecurl = curl_init("https://api.trello.com/1/cards/{$Card["id"]}/idList");
+			curl_setopt($movecurl, CURLOPT_CUSTOMREQUEST, "PUT");
+			curl_setopt($movecurl, CURLOPT_POSTFIELDS, $movedata);
+			curl_setopt($movecurl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($movecurl, CURLOPT_HTTPHEADER, array(
+				'Content-Type: application/json',
+				'Content-Length: ' . strlen($movedata))
+			);
+		
+			$moveresult = curl_exec($movecurl);
+			
 		} else {Fail($Card, "User is not in the group, cannot auto rank.");}
 	} else {Fail($Card, "Card is not formatted correctly, cannot auto rank.");}
 }
