@@ -17,10 +17,15 @@ $Cards = json_decode(curl_exec($cardscurl), true);
 curl_close($cardscurl);
 
 function Fail($TheCard, $Comment) {
+	echo "<br>Fail<br>";
 	if ((int)($TheCard["comments"]) == 0) {
+		echo "Failing<br>";
 		$CardID = $TheCard["id"];
+		echo "{$CardID}<br>";
 		
 		$commentdata = json_encode(array("text" => $Comment));
+		
+		echo "{$commentdata}<br>";
 		
 		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments?key={$Key}&token={$Token}");
 		$commentcurl = curl_init("http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}");
@@ -32,7 +37,8 @@ function Fail($TheCard, $Comment) {
 				'Content-Length: ' . strlen($commentdata))
 		);
 		
-		curl_exec($commentcurl);
+		$commentresult = curl_exec($commentcurl);
+		echo "{$commentresult}<br>";
 	}
 }
 
