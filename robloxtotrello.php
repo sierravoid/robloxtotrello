@@ -23,7 +23,7 @@ function Fail($TheCard, $Comment) {
 		$CardID = $TheCard["id"];
 		echo "{$CardID}<br>";
 		
-		$commentdata = json_encode(array("text" => $Comment, "key" => $Key, "token" => $Token));
+		$commentdata = json_encode(array("text" => $Comment, "key" => $_GET["Key"], "token" => $_Get["Token"]));
 		
 		echo "{$commentdata}<br>";
 		
