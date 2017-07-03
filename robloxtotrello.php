@@ -28,7 +28,6 @@ function Fail($TheCard, $Comment) {
 		echo "{$commentdata}<br>";
 		
 		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments?key={$Key}&token={$Token}");
-		$commentcurl = curl_init("http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}");
 			curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
 			curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
