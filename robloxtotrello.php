@@ -31,6 +31,7 @@ foreach ($Cards as $Card) {
 	
 	$sep1 = stripos($Card["name"], " | ");
 	if ($sep1) {
+		$sep1 += 3;
 		echo "Sep1: {$sep1}\n";
 		$sepstr = substr($Card["name"], $sep1);
 		echo "Sepstr: {$sepstr}\n";
