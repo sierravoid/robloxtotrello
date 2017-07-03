@@ -47,7 +47,9 @@ foreach ($Cards as $Card) {
 		$UserRank = (int)curl_exec($usercurl) || 0;
 		
 		if ($UserRank > 0) {
-			echo "Current Rank: {$UserRank}<br><br>"
+			echo "Current Rank: {$UserRank}<br><br>";
+		} else {
+			echo "Current Rank: User is not in group<br><br>";
 		}
 	}
 }
