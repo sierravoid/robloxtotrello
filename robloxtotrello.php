@@ -17,7 +17,10 @@ $cards = json_decode(curl_exec($cardscurl));
 curl_close($cardscurl);
 
 echo $Key;
-echo $cards[1]["name"];
+
+foreach ($cards as &$card) {
+	echo $card;
+}
 
 
 //http://obscure-harbor-96531.herokuapp.com/setRank/2518831/$userid/$rank
