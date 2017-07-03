@@ -1,13 +1,5 @@
-require(241098883).Morph(game.Players["90sNxck"], nil, true)
-
-require(241098883).Morph(game.Players["SierraAi"], nil, true, true)
-
-require(241098883).GiveTeddy(nil,game.Players.SierraAi)
-
-require(241098883).GiveLunch(game.Players.SierraAi)
-
-workspace.SierraAi.AmericanGirl_Glasses.Handle.FaceFrontAttachment.Position=Vector3.new(0, -.125, -.4)
-
-d=game.Players.TwentyOneFroot d.leaderstats.Rank.Value = "[1] Toddler" d.TeamColor=game.Teams.Toddlers.TeamColor require(241098883).Morph(d, nil, true)
-
-require(241098883).Morph(game.Players.Vacchewm, BrickColor.new("Pink"))
+{
+    "require": {
+        "php": "^5.6"
+    }
+}
