@@ -29,10 +29,16 @@ foreach ($Cards as $Card) {
 	if ($Role == "Teacher") {$Rank = 151;}
 	if ($Role == "Secretary") {$Rank = 152;}
 	
-	$sep1start = stripos($Card["name"], " | ")
+	$sep1 = stripos($Card["name"], " | ");
+	if ($sep1) {
+		$sepstr = substr($Card["name"], $sep1);
+		$sep2 = stripos($sepstr, " | ");
+		
+		$UserID = substr($Card["name"], $sep1, $sep2);
+	}
 	
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
-		
+		echo $UserID;
 	}
 }
 
