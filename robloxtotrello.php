@@ -23,11 +23,11 @@ function Fail($TheCard, $Comment) {
 		$CardID = $TheCard["id"];
 		echo "{$CardID}<br>";
 		
-		$commentdata = json_encode(array("text" => $Comment));
+		$commentdata = json_encode(array("text" => $Comment, "key" => $Key, "token" => $Token));
 		
 		echo "{$commentdata}<br>";
 		
-		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments?key={$Key}&token={$Token}");
+		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments");
 			curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
 			curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
