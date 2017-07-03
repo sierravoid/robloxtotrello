@@ -50,7 +50,7 @@ foreach ($Cards as $Card) {
 			echo "Current Rank: {$UserRank}<br><br>";
 			
 			$rankurl = "http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}";
-			$rankdata = json_encode(array("key" => $BotKey))
+			$rankdata = json_encode(array("key" => $BotKey));
 			echo "{$rankdata}<br>";
 			
 			$rankoptions = array(
