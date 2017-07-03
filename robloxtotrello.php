@@ -24,7 +24,11 @@ foreach ($Cards as $Card) {
 		$Role = reset($Card["labels"])["name"];
 	}
 	
-	echo $Role;
+	if ($Role == "Nurse") {$Rank = 55;}
+	if ($Role == "Teacher") {$Rank = 151;}
+	if ($Role == "Secretary") {$Rank = 152;}
+	
+	echo "{$Role}\n"
 }
 
 
