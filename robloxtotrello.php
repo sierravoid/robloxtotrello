@@ -19,6 +19,7 @@ curl_close($cardscurl);
 foreach ($Cards as $Card) {
 	$Role = "";
 	$Rank = 0;
+	$UserID = 0;
 	
 	if (count($Card["labels"]) > 0) {
 		$Role = reset($Card["labels"])["name"];
@@ -28,7 +29,11 @@ foreach ($Cards as $Card) {
 	if ($Role == "Teacher") {$Rank = 151;}
 	if ($Role == "Secretary") {$Rank = 152;}
 	
-	echo "{$Rank}\n";
+	$sep1start = stripos($Card["name"], " | ")
+	
+	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
+		
+	}
 }
 
 
