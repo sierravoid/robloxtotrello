@@ -55,7 +55,7 @@ foreach ($Cards as $Card) {
 			
 			$rankoptions = array(
 				'http' => array(
-					'header' => "Content-type: application/json\r\n",
+					'header' => "Content-type: application/json",
 					'method' => 'POST',
 					'content' => http_build_query($rankdata)
 				)
