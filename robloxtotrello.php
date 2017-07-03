@@ -16,9 +16,9 @@ curl_setopt($cardscurl, CURLOPT_HEADER, 0);
 $cards = json_decode(curl_exec($cardscurl));
 curl_close($cardscurl);
 
-echo $Key;
+//echo $Key;
 
-echo var_dump($cards);
+echo $cards[0]["name"];
 
 
 //http://obscure-harbor-96531.herokuapp.com/setRank/2518831/$userid/$rank
