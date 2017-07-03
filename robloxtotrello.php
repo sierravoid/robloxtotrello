@@ -48,8 +48,21 @@ foreach ($Cards as $Card) {
 
 		if ($UserRank > 0) {
 			echo "Current Rank: {$UserRank}<br><br>";
-		} else {
-			echo "Current Rank: User is not in group<br><br>";
+			
+			$rankurl = "http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}";
+			$rankdata = json_encode(array("key" => "{$BotKey}"));
+			
+			$rankoptions = array(
+				'http' => array(
+					'header' => "Content-type: application/json\r\n",
+					'method' => 'POST',
+					'content' => http_build_query($rankdata)
+				)
+			);
+			$rankcontext = stream_context_create($rankoptions);
+			file_get_contents($rankurl, false, $rankcontext);
+			
+			
 		}
 	}
 }
