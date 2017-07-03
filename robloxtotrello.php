@@ -44,15 +44,13 @@ foreach ($Cards as $Card) {
 		$usercurl = curl_init("http://www.roblox.com/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid={$UserID}&groupId=2518831");
 		curl_setopt($usercurl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($usercurl, CURLOPT_HEADER, 0);
-		$UserRank = curl_exec($usercurl);
+		$UserRank = (int)curl_exec($usercurl);
 		
-		echo $UserRank;
-		
-		//if ($UserRank > 0) {
-		//	echo "Current Rank: {$UserRank}<br><br>";
-		//} else {
-		//	echo "Current Rank: User is not in group<br><br>";
-		//}
+		if ($UserRank > 0) {
+			echo "Current Rank: {$UserRank}<br><br>";
+		} else {
+			echo "Current Rank: User is not in group<br><br>";
+		}
 	}
 }
 
