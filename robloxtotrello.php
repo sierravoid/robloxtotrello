@@ -97,12 +97,6 @@ foreach ($Cards as $Card) {
 		} else {Fail($Card, "User is not in the group, cannot auto rank.");}
 	} else {Fail($Card, "Card is not formatted correctly, cannot auto rank.");}
 }
-
-
-//http://obscure-harbor-96531.herokuapp.com/setRank/2518831/$userid/$rank
-//data: {key = $botkey}
-
-//move cards: trello.com/1/cards/<card id>/idList?key=<key>&token=<token>&value=<list id>
 ?>
 
 </body>
