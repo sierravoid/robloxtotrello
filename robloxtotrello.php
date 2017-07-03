@@ -31,14 +31,18 @@ foreach ($Cards as $Card) {
 	
 	$sep1 = stripos($Card["name"], " | ");
 	if ($sep1) {
+		echo "Sep1: {$sep1}\n";
 		$sepstr = substr($Card["name"], $sep1);
+		echo "Sepstr: {$sepstr}\n";
 		$sep2 = stripos($sepstr, " | ");
+		echo "Sep2: {$sep2}\n";
 		
 		$UserID = substr($Card["name"], $sep1, $sep2);
+		echo "UserID: {$UserID}\n";
 	}
 	
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
-		echo $UserID;
+		echo "YesagainUserID: {$UserID}";
 	}
 }
 
