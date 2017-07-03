@@ -10,8 +10,7 @@ $Key = $data["Key"];
 $Token = $data["Token"];
 $BotKey = $data["BotKey"];
 
-$cards = file_get_contents("http://www.google.com");
-//$cards = file_get_contents("https://api.trello.com/1/lists/595987df3e10c1bea15389d0/cards?key=" . $Key . "$&token=" . $Token);
+$cards = file_get_contents("http://api.trello.com/1/lists/595987df3e10c1bea15389d0/cards");
 
 echo $cards;
 
