@@ -18,9 +18,7 @@ curl_close($cardscurl);
 
 echo $Key;
 
-foreach ($cards as &$card) {
-	echo $card;
-}
+echo var_dump($cards);
 
 
 //http://obscure-harbor-96531.herokuapp.com/setRank/2518831/$userid/$rank
