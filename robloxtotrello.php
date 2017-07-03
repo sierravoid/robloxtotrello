@@ -49,22 +49,20 @@ foreach ($Cards as $Card) {
 		if ($UserRank > 0) {
 			echo "Current Rank: {$UserRank}<br><br>";
 			
-			$rankurl = "http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}";
 			$rankdata = json_encode(array("key" => $BotKey));
-			echo "{$rankdata}<br>";
 			
-			$rankoptions = array(
-				'http' => array(
-					'header' => "Content-type: application/json",
-					'method' => 'POST',
-					'content' => http_build_query($rankdata)
-				)
+			$rankcurl = curl_init("http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}");
+			curl_setopt($rankcurl, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($rankcurl, CURLOPT_POSTFIELDS, $rankdata);
+			curl_setopt($rankcurl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($rankcurl, CURLOPT_HTTPHEADER, array(
+				'Content-Type: application/json',
+				'Content-Length: ' . strlen($rankdata))
 			);
-			$rankcontext = stream_context_create($rankoptions);
-			$result = file_get_contents($rankurl, false, $rankcontext);
 			
-			echo $result;
+			$result = curl_exec($rankcurl);
 			
+			echo "{$result}<br><br>";
 		}
 	}
 }
