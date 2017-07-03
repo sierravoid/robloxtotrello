@@ -18,7 +18,9 @@ curl_close($cardscurl);
 
 //echo $Key;
 
+echo "1";
 echo $cards;
+echo "2";
 echo $cards[0];
 
 
