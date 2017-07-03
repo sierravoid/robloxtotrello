@@ -13,19 +13,18 @@ $BotKey = $_GET["BotKey"];
 $cardscurl = curl_init("https://api.trello.com/1/lists/595987df3e10c1bea15389d0/cards?key={$Key}&token={$Token}");
 curl_setopt($cardscurl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($cardscurl, CURLOPT_HEADER, 0);
-$cards = json_decode(curl_exec($cardscurl), true);
+$Cards = json_decode(curl_exec($cardscurl), true);
 curl_close($cardscurl);
 
-//echo $Key;
-
-echo "1\n";
-echo $cards;
-echo "\n2\n";
-echo $cards[0];
-echo "\n3\n";
-
-foreach ($cards as $card) {
-	echo $card["name"];
+foreach ($Cards as $Card) {
+	$Role = "";
+	$Rank = 0;
+	
+	if (count($Card["labels"]) > 0) {
+		$Role = reset($Card["labels"])["name"];
+	}
+	
+	echo $Role;
 }
 
 
