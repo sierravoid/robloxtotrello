@@ -39,7 +39,7 @@ foreach ($Cards as $Card) {
 	}
 	
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
-		echo "UserID: {$UserID}<br>Role: {$Role}<br>Rank: {$Rank}";
+		echo "UserID: {$UserID}<br>Role: {$Role}<br>Rank: {$Rank}<br>";
 	}
 }
 
