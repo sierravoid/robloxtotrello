@@ -38,7 +38,7 @@ function Fail($TheCard, $Comment) {
 		);
 		
 		$commentresult = curl_exec($commentcurl);
-		echo "{$commentresult}<br>";
+		echo "Comment Result: {$commentresult}<br>";
 	}
 }
 
