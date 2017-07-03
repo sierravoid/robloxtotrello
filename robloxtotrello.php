@@ -35,13 +35,20 @@ foreach ($Cards as $Card) {
 		$sepstr = substr($Card["name"], $sep1);
 		$sep2 = stripos($sepstr, " | ");
 		
-		$UserID = substr($Card["name"], $sep1, $sep2);
+		$UserID = (int)substr($Card["name"], $sep1, $sep2);
 	}
 	
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
-		echo "UserID: {$UserID}<br>Role: {$Role}<br>Rank: {$Rank}<br><br>";
+		echo "UserID: {$UserID}<br>Role: {$Role}<br>Applied Rank: {$Rank}<br>";
 		
+		$usercurl = curl_init("http://www.roblox.com/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid={$UserID}&groupId=2518831");
+		curl_setopt($usercurl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($usercurl, CURLOPT_HEADER, 0);
+		$UserRank = (int)curl_exec($usercurl) || 0;
 		
+		if ($UserRank > 0) {
+			echo "Current Rank: {$UserRank}<br><br>"
+		}
 	}
 }
 
