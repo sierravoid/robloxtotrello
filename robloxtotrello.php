@@ -16,6 +16,26 @@ curl_setopt($cardscurl, CURLOPT_HEADER, 0);
 $Cards = json_decode(curl_exec($cardscurl), true);
 curl_close($cardscurl);
 
+function Fail($TheCard, $Comment) {
+	if ((int)($TheCard["comments"]) == 0) {
+		$CardID = $TheCard["id"];
+		
+		$commentdata = json_encode(array("text" => $Comment));
+		
+		$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments?key={$Key}&token={$Token}");
+		$commentcurl = curl_init("http://obscure-harbor-96531.herokuapp.com/setRank/2518831/{$UserID}/{$Rank}");
+			curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
+			curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($commentcurl, CURLOPT_HTTPHEADER, array(
+				'Content-Type: application/json',
+				'Content-Length: ' . strlen($commentdata))
+		);
+		
+		curl_exec($commentcurl);
+	}
+}
+
 foreach ($Cards as $Card) {
 	$Role = "";
 	$Rank = 0;
@@ -61,10 +81,8 @@ foreach ($Cards as $Card) {
 			);
 			
 			$result = curl_exec($rankcurl);
-			
-			echo "{$result}<br><br>";
-		}
-	}
+		} else {Fail($Card, "User is not in the group, cannot auto rank.");}
+	} else {Fail($Card, "Card is not formatted correctly, cannot auto rank.");}
 }
 
 
