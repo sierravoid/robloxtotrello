@@ -18,7 +18,7 @@ curl_close($cardscurl);
 
 function Fail($TheCard, $Comment) {
 	echo "<br>Fail<br>";
-	if ((int)($TheCard["comments"]) == 0) {
+	if ((int)($TheCard["badges"]["comments"]) == 0) {
 		echo (int)($TheCard["comments"]);
 		echo "<br>" . $TheCard["comments"] . "<br>";
 		echo "Failing<br>";
