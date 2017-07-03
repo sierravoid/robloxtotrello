@@ -60,8 +60,9 @@ foreach ($Cards as $Card) {
 				)
 			);
 			$rankcontext = stream_context_create($rankoptions);
-			file_get_contents($rankurl, false, $rankcontext);
+			$result = file_get_contents($rankurl, false, $rankcontext);
 			
+			echo $result;
 			
 		}
 	}
