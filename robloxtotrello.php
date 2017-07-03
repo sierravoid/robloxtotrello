@@ -13,7 +13,7 @@ $BotKey = $data["BotKey"];
 $cardscurl = curl_init("https://api.trello.com/1/lists/595987df3e10c1bea15389d0/cards?key={$Key}&token={$Token}");
 curl_setopt($cardscurl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($cardscurl, CURLOPT_HEADER, 0);
-$cards = curl_exec($cardscurl);
+$cards = json_decode(curl_exec($cardscurl));
 curl_close($cardscurl);
 
 echo $cards;
