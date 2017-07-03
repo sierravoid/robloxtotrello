@@ -28,7 +28,7 @@ foreach ($Cards as $Card) {
 	if ($Role == "Teacher") {$Rank = 151;}
 	if ($Role == "Secretary") {$Rank = 152;}
 	
-	echo "{$Role}\n";
+	echo "{$Rank}\n";
 }
 
 
