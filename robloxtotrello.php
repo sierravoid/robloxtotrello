@@ -32,18 +32,14 @@ foreach ($Cards as $Card) {
 	$sep1 = stripos($Card["name"], " | ");
 	if ($sep1) {
 		$sep1 += 3;
-		echo "Sep1: {$sep1}<br>";
 		$sepstr = substr($Card["name"], $sep1);
-		echo "Sepstr: {$sepstr}<br>";
 		$sep2 = stripos($sepstr, " | ");
-		echo "Sep2: {$sep2}<br>";
 		
 		$UserID = substr($Card["name"], $sep1, $sep2);
-		echo "UserID: {$UserID}<br>";
 	}
 	
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
-		echo "YesagainUserID: {$UserID}";
+		echo "UserID: {$UserID}<br>Role: {$Role}<br>Rank: {$Rank}";
 	}
 }
 
