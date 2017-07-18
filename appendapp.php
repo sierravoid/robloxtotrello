@@ -24,7 +24,6 @@ function Comment($TheComment) {
 }
 
 if ($Passed == "true") {
-	Comment("{$PlayerName} passed this application.");
 	
 	$movedata = json_encode(array("value" => "595987df3e10c1bea15389d0", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -39,8 +38,9 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
+	Comment("{$PlayerName} passed this application.");
+	
 } elseif ($Passed == "false") {
-	Comment("{$PlayerName} rejected this application.");
 	
 	$movedata = json_encode(array("value" => "5956aa5375f28113f8489b47", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -54,6 +54,8 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
+	
+	Comment("{$PlayerName} rejected this application.");
 }
 
 ?>
