@@ -7,6 +7,7 @@ $Passed = $_GET["passed"];
 $PlayerName = $_GET["playername"];
 
 function Comment($Comment) {
+	echo "{$Comment}<br>";
 	$commentdata = json_encode(array("text" => $Comment, "key" => $_GET["key"], "token" => $_GET["token"]));
 	
 	$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments");
