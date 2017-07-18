@@ -9,7 +9,7 @@ $PlayerName = $_GET["playername"];
 function Comment($TheComment) {
 	$commentdata = json_encode(array("text" => $TheComment, "key" => $_GET["key"], "token" => $_GET["token"]));
 	
-	$commentcurl = curl_init("https://api.trello.com/1/cards/{$_GET['CardID']}/actions/comments");
+	$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments");
 	curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
 	curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
 	curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
@@ -20,10 +20,12 @@ function Comment($TheComment) {
 	
 	$commentresult = curl_exec($commentcurl);
 	
+	echo "{$CardID}<br>"
 	echo $commentresult;
 }
 
 if ($Passed == "true") {
+	Comment("{$PlayerName} passed this application.");
 	
 	$movedata = json_encode(array("value" => "595987df3e10c1bea15389d0", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -38,9 +40,8 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
-	Comment("{$PlayerName} passed this application.");
-	
 } elseif ($Passed == "false") {
+	Comment("{$PlayerName} rejected this application.");
 	
 	$movedata = json_encode(array("value" => "5956aa5375f28113f8489b47", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -54,8 +55,6 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
-	
-	Comment("{$PlayerName} rejected this application.");
 }
 
 ?>
