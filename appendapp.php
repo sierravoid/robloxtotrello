@@ -52,6 +52,8 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
+} else {
+	echo "Nothing";
 }
 
 ?>
