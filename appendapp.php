@@ -20,7 +20,7 @@ function Comment($TheComment) {
 	
 	$commentresult = curl_exec($commentcurl);
 	
-	echo "{$CardID}<br>"
+	echo "{$CardID}<br>";
 	echo $commentresult;
 }
 
