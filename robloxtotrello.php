@@ -13,7 +13,7 @@ $Cards = json_decode(curl_exec($cardscurl), true);
 curl_close($cardscurl);
 
 function Fail($TheCard, $Comment) {
-	if ((int)($TheCard["badges"]["comments"]) == 0) {
+	if ((int)($TheCard["badges"]["comments"]) < 2) {
 		$CardID = $TheCard["id"];
 		
 		$commentdata = json_encode(array("text" => $Comment, "key" => $_GET["Key"], "token" => $_GET["Token"]));
