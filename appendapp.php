@@ -6,9 +6,8 @@ $CardID = $_GET["cardid"];
 $Passed = $_GET["passed"];
 $PlayerName = $_GET["playername"];
 
-function Comment($Comment) {
-	echo "{$Comment}<br>";
-	$commentdata = json_encode(array("text" => $Comment, "key" => $_GET["key"], "token" => $_GET["token"]));
+function Comment($TheComment) {
+	$commentdata = json_encode(array("text" => $TheComment, "key" => $_GET["key"], "token" => $_GET["token"]));
 	
 	$commentcurl = curl_init("https://api.trello.com/1/cards/{$CardID}/actions/comments");
 	curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -20,9 +19,6 @@ function Comment($Comment) {
 	);
 	
 	$commentresult = curl_exec($commentcurl);
-	
-	echo $commentresult;
-	echo "<br>Commented";
 }
 
 if ($Passed == "true") {
