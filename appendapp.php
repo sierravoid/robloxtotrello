@@ -19,6 +19,9 @@ function Comment($Comment) {
 	);
 	
 	$commentresult = curl_exec($commentcurl);
+	
+	echo $commentresult;
+	echo "<br>Commented";
 }
 
 if ($Passed == "true") {
@@ -52,8 +55,6 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
-} else {
-	echo "Nothing";
 }
 
 ?>
