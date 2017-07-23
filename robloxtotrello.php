@@ -68,7 +68,7 @@ foreach ($Cards as $Card) {
 
 		//if ($UserRank > 0) {
 		if (strpos($UserGroups, 'Little Angels Daycare') !== false) {
-			echo "Current Rank: {$UserRank}<br><br>";
+			//echo "Current Rank: {$UserRank}<br><br>";
 			
 			$rankdata = json_encode(array("key" => $BotKey));
 			
