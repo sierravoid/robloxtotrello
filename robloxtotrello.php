@@ -56,12 +56,18 @@ foreach ($Cards as $Card) {
 	if (($Role != "") && ($Rank != 0) && ($UserID != 0)) {
 		echo "UserID: {$UserID}<br>Role: {$Role}<br>Applied Rank: {$Rank}<br>";
 		
-		$usercurl = curl_init("http://www.roblox.com/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid={$UserID}&groupId=2518831");
+		//$usercurl = curl_init("http://www.roblox.com/Game/LuaWebService/HandleSocialRequest.ashx?method=GetGroupRank&playerid={$UserID}&groupId=2518831");
+		//curl_setopt($usercurl, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($usercurl, CURLOPT_HEADER, 0);
+		//$UserRank = (int)(substr(curl_exec($usercurl), 22, -8));
+		
+		$usercurl = curl_init("https://api.roblox.com/users/{$UserID}/groups");
 		curl_setopt($usercurl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($usercurl, CURLOPT_HEADER, 0);
-		$UserRank = (int)(substr(curl_exec($usercurl), 22, -8));
+		$UserGroups = curl_exec($usercurl);
 
-		if ($UserRank > 0) {
+		//if ($UserRank > 0) {
+		if (strpos($UserGroups, 'Little Angels Daycare') !== false) {
 			echo "Current Rank: {$UserRank}<br><br>";
 			
 			$rankdata = json_encode(array("key" => $BotKey));
