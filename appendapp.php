@@ -6,21 +6,6 @@ $CardID = $_GET["cardid"];
 $Passed = $_GET["passed"];
 $PlayerName = $_GET["playername"];
 
-function Comment($TheComment, $ID) {
-	$commentdata = json_encode(array("text" => $TheComment, "key" => $_GET["key"], "token" => $_GET["token"]));
-	
-	$commentcurl = curl_init("https://api.trello.com/1/cards/{$ID}/actions/comments");
-	curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
-	curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($commentcurl, CURLOPT_HTTPHEADER, array(
-		'Content-Type: application/json',
-		'Content-Length: ' . strlen($commentdata))
-	);
-	
-	$commentresult = curl_exec($commentcurl);
-}
-
 function LogIt($TheLog, $ID) {
 	$cardcurl = curl_init("https://api.trello.com/1/cards/{$ID}?key={$_GET['key']}&token={$_GET['token']}");
 	curl_setopt($cardcurl, CURLOPT_RETURNTRANSFER, true);
@@ -44,8 +29,25 @@ function LogIt($TheLog, $ID) {
 	$webhookresult = curl_exec($webhook);
 }
 
+function Comment($TheComment, $ID) {
+	$commentdata = json_encode(array("text" => "{$TheComment} this application.", "key" => $_GET["key"], "token" => $_GET["token"]));
+	
+	$commentcurl = curl_init("https://api.trello.com/1/cards/{$ID}/actions/comments");
+	curl_setopt($commentcurl, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($commentcurl, CURLOPT_POSTFIELDS, $commentdata);
+	curl_setopt($commentcurl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($commentcurl, CURLOPT_HTTPHEADER, array(
+		'Content-Type: application/json',
+		'Content-Length: ' . strlen($commentdata))
+	);
+	
+	$commentresult = curl_exec($commentcurl);
+	
+	LogIt("{$TheComment} an application.", $ID);
+}
+
 if ($Passed == "true") {
-	Comment("{$PlayerName} passed this application.", $CardID);
+	Comment("{$PlayerName} passed", $CardID);
 	
 	$movedata = json_encode(array("value" => "595987df3e10c1bea15389d0", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -60,10 +62,8 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
-	LogIt("{$PlayerName} passed an application.", $CardID);
-	
 } elseif ($Passed == "false") {
-	Comment("{$PlayerName} rejected this application.", $CardID);
+	Comment("{$PlayerName} rejected", $CardID);
 	
 	$movedata = json_encode(array("value" => "5956aa5375f28113f8489b47", "key" => $_GET["key"], "token" => $_GET["token"]));
 			
@@ -77,8 +77,6 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
-	
-	LogIt("{$PlayerName} rejected an application.", $CardID);
 }
 
 ?>
