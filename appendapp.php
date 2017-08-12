@@ -21,6 +21,29 @@ function Comment($TheComment, $ID) {
 	$commentresult = curl_exec($commentcurl);
 }
 
+function LogIt($TheLog, $ID) {
+	$cardcurl = curl_init("https://api.trello.com/1/cards/{$ID}?key={$Key}&token={$Token}");
+	curl_setopt($cardcurl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($cardcurl, CURLOPT_HEADER, 0);
+	$Card = json_decode(curl_exec($cardcurl), true);
+	curl_close($cardcurl);
+	
+	$URL = $Card["shortUrl"];
+	
+	$webhookdata = json_encode(array("content" => "{$TheLog}\n({$URL})"));
+	
+	$webhook = curl_init("https://discordapp.com/api/webhooks/345719418086621197/6i351Y7kXtNdp8lAqp893QBP56aoTpnSEVHZsu88FTU5tNzDZRMW-EVwY6hkrDQ7_rPd");
+	curl_setopt($webhook, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($webhook, CURLOPT_POSTFIELDS, $webhookdata);
+	curl_setopt($webhook, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($webhook, CURLOPT_HTTPHEADER, array(
+		'Content-Type: application/json',
+		'Content-Length: ' . strlen($webhookdata))
+	);
+	
+	$webhookresult = curl_exec($webhook);
+}
+
 if ($Passed == "true") {
 	Comment("{$PlayerName} passed this application.", $CardID);
 	
@@ -37,6 +60,8 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
+	LogIt("{$PlayerName} passed an application.", $CardID);
+	
 } elseif ($Passed == "false") {
 	Comment("{$PlayerName} rejected this application.", $CardID);
 	
@@ -52,6 +77,8 @@ if ($Passed == "true") {
 	);
 	
 	$moveresult = curl_exec($movecurl);
+	
+	LogIt("{$PlayerName} rejected an application.", $CardID);
 }
 
 ?>
