@@ -22,16 +22,11 @@ function Comment($TheComment, $ID) {
 }
 
 function LogIt($TheLog, $ID) {
-	echo "{$TheLog}<br>{$ID}<br>";
-	$cardcurl = curl_init("https://api.trello.com/1/cards/{$ID}?key={$Key}&token={$Token}");
+	$cardcurl = curl_init("https://api.trello.com/1/cards/{$ID}?key={$_GET['key']}&token={$_GET['token']}");
 	curl_setopt($cardcurl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($cardcurl, CURLOPT_HEADER, 0);
 	$Card = json_decode(curl_exec($cardcurl), true);
-	
-	echo "Card: {$Card}<br>";
 	curl_close($cardcurl);
-	
-	echo $Card;
 	
 	$URL = $Card["shortUrl"];
 	
