@@ -26,12 +26,12 @@ function LogIt($TheLog, $ID) {
 	$cardcurl = curl_init("https://api.trello.com/1/cards/{$ID}?key={$Key}&token={$Token}");
 	curl_setopt($cardcurl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($cardcurl, CURLOPT_HEADER, 0);
-	$Card = json_decode(curl_exec($cardcurl), true);
+	$Card = curl_exec($cardcurl);
 	curl_close($cardcurl);
 	
 	echo $Card;
 	
-	$URL = $Card["shortUrl"];
+	$URL = $Card;
 	
 	$webhookdata = json_encode(array("content" => "{$TheLog}\n({$URL})"));
 	
