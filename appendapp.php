@@ -28,7 +28,7 @@ function LogIt($TheLog, $ID) {
 	$Card = json_decode(curl_exec($cardcurl), true);
 	curl_close($cardcurl);
 	
-	$URL = $Card["shortUrl"];
+	$URL = $Card;
 	
 	$webhookdata = json_encode(array("content" => "{$TheLog}\n({$URL})"));
 	
