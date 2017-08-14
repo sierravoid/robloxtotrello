@@ -44,7 +44,7 @@ function LogIt($TheLog, $ID) {
 		
 	}
 	
-	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
+	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL}) debug: {$Card['id']}"));
 	
 	$webhook = curl_init("https://discordapp.com/api/webhooks/345719418086621197/6i351Y7kXtNdp8lAqp893QBP56aoTpnSEVHZsu88FTU5tNzDZRMW-EVwY6hkrDQ7_rPd");
 	curl_setopt($webhook, CURLOPT_CUSTOMREQUEST, "POST");
