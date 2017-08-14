@@ -32,14 +32,19 @@ function LogIt($TheLog, $ID) {
 	$RestText = "an application.";
 	
 	$sep1 = stripos($Card["name"], " | ");
+	
+	$working = "false";
+	
 	if ($sep1) {
+		working = "true";
+		
 		$sep1 -= 1;
 		$sepstr = substr($Card["name"], 0, $sep1);
 		
 		$RestText == "{$sepstr}'s application.";
 	}
 	
-	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
+	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL}) debug: {$working}"));
 	
 	$webhook = curl_init("https://discordapp.com/api/webhooks/345719418086621197/6i351Y7kXtNdp8lAqp893QBP56aoTpnSEVHZsu88FTU5tNzDZRMW-EVwY6hkrDQ7_rPd");
 	curl_setopt($webhook, CURLOPT_CUSTOMREQUEST, "POST");
