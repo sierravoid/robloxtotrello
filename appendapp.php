@@ -29,8 +29,17 @@ function LogIt($TheLog, $ID) {
 	curl_close($cardcurl);
 	
 	$URL = $Card["shortUrl"];
+	$RestText = "an application.";
 	
-	$webhookdata = json_encode(array("content" => "{$TheLog} ({$URL})"));
+	$sep1 = stripos($Card["name"], " | ");
+	if ($sep1) {
+		$sep1 -= 1;
+		$sepstr = substr($Card["name"], 0, $sep1);
+		
+		$AppName == "{$sepstr}'s application.";
+	}
+	
+	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
 	
 	$webhook = curl_init("https://discordapp.com/api/webhooks/345719418086621197/6i351Y7kXtNdp8lAqp893QBP56aoTpnSEVHZsu88FTU5tNzDZRMW-EVwY6hkrDQ7_rPd");
 	curl_setopt($webhook, CURLOPT_CUSTOMREQUEST, "POST");
@@ -60,7 +69,7 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
-	LogIt("{$PlayerName} passed an application.", $CardID);
+	LogIt("{$PlayerName} passed", $CardID);
 	
 } elseif ($Passed == "false") {
 	Comment("{$PlayerName} rejected this application.", $CardID);
@@ -78,7 +87,7 @@ if ($Passed == "true") {
 	
 	$moveresult = curl_exec($movecurl);
 	
-	LogIt("{$PlayerName} rejected an application.", $CardID);
+	LogIt("{$PlayerName} rejected", $CardID);
 }
 
 ?>
