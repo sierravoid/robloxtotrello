@@ -41,7 +41,7 @@ function LogIt($TheLog, $ID) {
 		$Role = key($Labels);
 		$RoleName = $Labels[$Role]["name"];
 		
-		$RestText = "{$sepstr}'s application for {$RoleName}.";
+		$RestText = "{$sepstr}'s application for {$Role}.";
 	}
 	
 	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
