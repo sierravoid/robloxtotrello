@@ -36,7 +36,12 @@ function LogIt($TheLog, $ID) {
 	if ($sep1) {
 		$sepstr = substr($Card["name"], 0, $sep1);
 		
-		$RestText = "{$sepstr}'s application for {$Card['idLabels'][0]['name']}.";
+		$Labels = $Card["idLabels"];
+		reset($Labels);
+		$Role = key($Labels);
+		$RoleName = $Labels[$Role]["name"];
+		
+		$RestText = "{$sepstr}'s application for {$RoleName}.";
 	}
 	
 	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
