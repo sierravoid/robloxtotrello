@@ -36,10 +36,7 @@ function LogIt($TheLog, $ID) {
 	if ($sep1) {
 		$sepstr = substr($Card["name"], 0, $sep1);
 		
-		$Labels = $Card["idLabels"];
-		reset($Labels);
-		$Role = key($Labels);
-		$RoleName = $Labels[$Role]["name"];
+		$Role = $Card["idLabels"][0];
 		
 		$RestText = "{$sepstr}'s application for {$Role}.";
 	}
