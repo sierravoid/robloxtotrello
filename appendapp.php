@@ -36,7 +36,7 @@ function LogIt($TheLog, $ID) {
 		$sep1 -= 1;
 		$sepstr = substr($Card["name"], 0, $sep1);
 		
-		$AppName == "{$sepstr}'s application.";
+		$RestText == "{$sepstr}'s application.";
 	}
 	
 	$webhookdata = json_encode(array("content" => "{$TheLog} {$RestText} ({$URL})"));
