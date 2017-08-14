@@ -36,7 +36,7 @@ function LogIt($TheLog, $ID) {
 	$working = "false";
 	
 	if ($sep1) {
-		working = "true";
+		$working = "true";
 		
 		$sep1 -= 1;
 		$sepstr = substr($Card["name"], 0, $sep1);
