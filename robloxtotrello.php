@@ -40,7 +40,8 @@ foreach ($Cards as $Card) {
 		$Role = reset($Card["labels"])["name"];
 	}
 	
-	if ($Role == "Nurse") {$Rank = 55;}
+	if ($Role == "Nurse") {$Rank = 20;}
+	if ($Role == "Teacher's Aid") {$Rank = 55;}
 	if ($Role == "Teacher") {$Rank = 151;}
 	if ($Role == "Secretary") {$Rank = 152;}
 	
